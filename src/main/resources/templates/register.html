@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <script th:src="@{https://code.jquery.com/jquery-1.8.0.min.js}"></script>
+</head>
+<body>
+<h1>注册页面</h1>
+姓名：<input id="name" name="name" type="text" /><br><br>
+密码：<input id="password" name="password" type="password" /><br><br>
+职位：<select id="job">
+    <option value="管理员">管理员</option>
+</select><br><br>
+<button onclick="register()">注册</button>
+</body>
+<script>
+    function register() {
+        var name = $("#name").val();
+        var password = $("#password").val();
+        var job = $("#job").val();
+        $.post("/register",{name:name,password:password,job:job},function (res) {
+            if (res==true) {    //controller中方法的返回结果
+                alert("注册成功");
+                window.location.href="/dologin";
+            }else {
+                alert("注册失败，请检查数据重试！");
+            }
+        })
+    }
+</script>
+</html>

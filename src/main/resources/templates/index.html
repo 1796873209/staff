@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <script th:src="@{https://code.jquery.com/jquery-1.8.0.min.js}"></script>
+</head>
+<body>
+欢迎您！管理员<input th:value="${admin.name}" /><br><br><br><br>
+<table width="888" border="1">
+    <thead>
+    <tr>
+        <!-- 表头内容粗体居中-->
+        <th>id</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪水</th>
+        <th>操作</th>
+    </tr>
+    <!--遍历 -->
+    <tr th:each="staff:${staffList}">
+        <td align="center" th:text="${staff.id}"></td>
+        <td align="center" th:text="${staff.username}"></td>
+        <td align="center" th:text="${staff.age}"></td>
+        <td align="center" th:text="${staff.sex}"></td>
+        <td align="center" th:text="${staff.salary}"></td>
+        <td align="center" ><a th:href="@{'/doupdate/'+${staff.id}}">修改</a>
+            <a th:href="@{'/dodelete/'+${staff.id}}">删除</a></td>
+    </tr>
+    </thead>
+</table>
+<button><a href="/doadd">添加</a> </button>
+</body>
+</html>
